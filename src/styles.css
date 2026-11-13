@@ -1,0 +1,41 @@
+@import "tailwindcss";
+
+@layer base {
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    margin: 0;
+    font-family: Inter, system-ui, sans-serif;
+    background: #f4f7fb;
+    color: #1e293b;
+  }
+}
+
+@keyframes ken {
+  from { transform: scale(1); }
+  to { transform: scale(1.08); }
+}
+@keyframes drift {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+}
+@keyframes pulse-ring {
+  0% { box-shadow: 0 0 0 0 rgba(230, 57, 70, 0.45); }
+  70% { box-shadow: 0 0 0 12px rgba(230, 57, 70, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(230, 57, 70, 0); }
+}
+
+.hero-photo {
+  animation: ken 18s ease-in-out infinite alternate;
+}
+.floaty {
+  animation: drift 6s ease-in-out infinite;
+}
+.live-dot {
+  animation: pulse-ring 2s infinite;
+}

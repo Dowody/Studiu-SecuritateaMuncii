@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Proiect SSM | Instructaj la locul de muncă & Electrosecuritate – CEITI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #0f4c81;
+      --primary-dark: #0a355c;
+      --accent: #e63946;
+      --accent-soft: #ff6b6b;
+      --success: #2a9d8f;
+      --warning: #f4a261;
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --text: #1e293b;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --shadow: 0 10px 40px -10px rgba(15, 76, 129, 0.15);
+      --radius: 16px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ===== NAV ===== */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      transition: all 0.3s ease;
+    }
+
+    .navbar.scrolled {
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0.85rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+    }
+
+    .logo span {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 0.25rem;
+      list-style: none;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 0.45rem 0.85rem;
+      border-radius: 8px;
+      transition: all 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+      background: rgba(15, 76, 129, 0.08);
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 7rem 1.5rem 4rem;
+      background: 
+        radial-gradient(ellipse 80% 60% at 50% -20%, rgba(15, 76, 129, 0.18), transparent),
+        radial-gradient(ellipse 60% 40% at 80% 50%, rgba(230, 57, 70, 0.08), transparent),
+        linear-gradient(180deg, #f0f7ff 0%, var(--bg) 100%);
+      overflow: hidden;
+    }
+
+    .hero-content {
+      max-width: 900px;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(15, 76, 129, 0.1);
+      color: var(--primary);
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 0.4rem 1rem;
+      border-radius: 999px;
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.03em;
+    }
+
+    .hero h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--primary-dark);
+      margin-bottom: 1.25rem;
+    }
+
+    .hero h1 .accent {
+      color: var(--accent);
+    }
+
+    .hero-subtitle {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 640px;
+      margin: 0 auto 2rem;
+    }
+
+    .meta-cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 2.5rem;
+    }
+
+    .meta-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1rem 1.4rem;
+      box-shadow: var(--shadow);
+      text-align: left;
+      min-width: 180px;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .meta-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px -12px rgba(15, 76, 129, 0.2);
+    }
+
+    .meta-card .label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+      margin-bottom: 0.25rem;
+    }
+
+    .meta-card .value {
+      font-weight: 600;
+      color: var(--primary-dark);
+      font-size: 0.95rem;
+    }
+
+    /* Decorative circles */
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px);
+      opacity: 0.5;
+      z-index: 1;
+      animation: float 12s ease-in-out infinite;
+    }
+
+    .blob-1 {
+      width: 320px;
+      height: 320px;
+      background: rgba(15, 76, 129, 0.25);
+      top: 10%;
+      left: -5%;
+    }
+
+    .blob-2 {
+      width: 220px;
+      height: 220px;
+      background: rgba(230, 57, 70, 0.18);
+      bottom: 15%;
+      right: 5%;
+      animation-delay: -4s;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-25px) scale(1.05); }
+    }
+
+    /* ===== SECTIONS ===== */
+    section {
+      padding: 4.5rem 1.5rem;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-header .num {
+      display: inline-block;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--accent);
+      background: rgba(230, 57, 70, 0.1);
+      padding: 0.3rem 0.8rem;
+      border-radius: 6px;
+      margin-bottom: 0.75rem;
+    }
+
+    .section-header h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.7rem, 3.5vw, 2.3rem);
+      color: var(--primary-dark);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-header p {
+      color: var(--text-muted);
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    /* ===== TOC ===== */
+    .toc {
+      background: var(--card);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      padding: 2rem;
+    }
+
+    .toc h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.2rem;
+      margin-bottom: 1.25rem;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .toc ol {
+      list-style: none;
+      counter-reset: toc;
+    }
+
+    .toc li {
+      counter-increment: toc;
+      margin-bottom: 0.6rem;
+    }
+
+    .toc li a {
+      display: flex;
+      align-items: baseline;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: var(--text);
+      padding: 0.55rem 0.85rem;
+      border-radius: 10px;
+      transition: all 0.2s ease;
+    }
+
+    .toc li a:hover {
+      background: rgba(15, 76, 129, 0.06);
+      color: var(--primary);
+    }
+
+    .toc li a::before {
+      content: counter(toc, decimal-leading-zero);
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      color: var(--accent);
+      font-size: 0.9rem;
+      min-width: 1.6rem;
+    }
+
+    /* ===== CARDS & CONTENT ===== */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      box-shadow: var(--shadow);
+      margin-bottom: 1.5rem;
+      transition: transform 0.25s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+    }
+
+    .card h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.25rem;
+      color: var(--primary-dark);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .card h3 .icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: rgba(15, 76, 129, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .card p, .card li {
+      color: var(--text);
+      margin-bottom: 0.6rem;
+    }
+
+    .card ul, .card ol {
+      padding-left: 1.25rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .card li {
+      margin-bottom: 0.4rem;
+    }
+
+    .highlight-box {
+      background: linear-gradient(135deg, rgba(15, 76, 129, 0.06), rgba(230, 57, 70, 0.05));
+      border-left: 4px solid var(--primary);
+      border-radius: 0 12px 12px 0;
+      padding: 1.1rem 1.35rem;
+      margin: 1.25rem 0;
+    }
+
+    .highlight-box.warning {
+      border-left-color: var(--accent);
+      background: linear-gradient(135deg, rgba(230, 57, 70, 0.06), rgba(244, 162, 97, 0.05));
+    }
+
+    .highlight-box.success {
+      border-left-color: var(--success);
+      background: linear-gradient(135deg, rgba(42, 157, 143, 0.07), transparent);
+    }
+
+    .highlight-box strong {
+      color: var(--primary-dark);
+    }
+
+    /* ===== COMPARISON TABLE ===== */
+    .table-wrapper {
+      overflow-x: auto;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      margin: 1.5rem 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--card);
+      font-size: 0.95rem;
+    }
+
+    th {
+      background: var(--primary);
+      color: white;
+      font-weight: 600;
+      text-align: left;
+      padding: 1rem 1.1rem;
+      font-family: 'Space Grotesk', sans-serif;
+    }
+
+    th:first-child {
+      border-radius: 15px 0 0 0;
+    }
+
+    th:last-child {
+      border-radius: 0 15px 0 0;
+    }
+
+    td {
+      padding: 0.95rem 1.1rem;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tr:nth-child(even) {
+      background: rgba(15, 76, 129, 0.03);
+    }
+
+    .tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.25rem 0.6rem;
+      border-radius: 6px;
+      letter-spacing: 0.02em;
+    }
+
+    .tag-green { background: rgba(42, 157, 143, 0.15); color: #1a7a6d; }
+    .tag-orange { background: rgba(244, 162, 97, 0.2); color: #c26d1a; }
+    .tag-red { background: rgba(230, 57, 70, 0.15); color: #c1121f; }
+
+    /* ===== GRID ===== */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .feature-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      text-align: center;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 20px -8px rgba(0,0,0,0.08);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow);
+      border-color: rgba(15, 76, 129, 0.25);
+    }
+
+    .feature-card .icon-lg {
+      width: 56px;
+      height: 56px;
+      margin: 0 auto 1rem;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      background: linear-gradient(135deg, rgba(15, 76, 129, 0.12), rgba(42, 157, 143, 0.1));
+    }
+
+    .feature-card h4 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.05rem;
+      margin-bottom: 0.5rem;
+      color: var(--primary-dark);
+    }
+
+    .feature-card p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    /* ===== STEPS ===== */
+    .steps {
+      position: relative;
+      padding-left: 2rem;
+    }
+
+    .steps::before {
+      content: '';
+      position: absolute;
+      left: 11px;
+      top: 8px;
+      bottom: 8px;
+      width: 3px;
+      background: linear-gradient(to bottom, var(--primary), var(--accent));
+      border-radius: 2px;
+    }
+
+    .step {
+      position: relative;
+      margin-bottom: 1.75rem;
+      padding-left: 1.5rem;
+    }
+
+    .step::before {
+      content: attr(data-num);
+      position: absolute;
+      left: -2rem;
+      top: 0;
+      width: 26px;
+      height: 26px;
+      background: var(--primary);
+      color: white;
+      border-radius: 50%;
+      font-size: 0.75rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Space Grotesk', sans-serif;
+      box-shadow: 0 0 0 4px var(--bg);
+    }
+
+    .step h4 {
+      font-family: 'Space Grotesk', sans-serif;
+      color: var(--primary-dark);
+      margin-bottom: 0.35rem;
+    }
+
+    /* ===== AUTHORS ===== */
+    .authors {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+    }
+
+    .author {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1rem 1.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      min-width: 220px;
+      box-shadow: 0 4px 16px -6px rgba(0,0,0,0.08);
+    }
+
+    .author-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.95rem;
+      flex-shrink: 0;
+    }
+
+    .author-name {
+      font-weight: 600;
+      color: var(--primary-dark);
+      font-size: 0.95rem;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--primary-dark);
+      color: rgba(255,255,255,0.85);
+      padding: 3rem 1.5rem 2rem;
+      text-align: center;
+    }
+
+    footer .logo-footer {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      margin-bottom: 0.75rem;
+      color: white;
+    }
+
+    footer p {
+      font-size: 0.9rem;
+      opacity: 0.8;
+      max-width: 500px;
+      margin: 0 auto 1.5rem;
+    }
+
+    footer .copy {
+      font-size: 0.8rem;
+      opacity: 0.6;
+      border-top: 1px solid rgba(255,255,255,0.15);
+      padding-top: 1.25rem;
+      margin-top: 1rem;
+    }
+
+    /* ===== ANIMATIONS ===== */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+      .hero {
+        min-height: auto;
+        padding-top: 6rem;
+      }
+      .meta-cards {
+        flex-direction: column;
+        align-items: stretch;
+      }
+    }
+
+    /* Print */
+    @media print {
+      .navbar, .blob { display: none; }
+      .hero { min-height: auto; padding: 2rem 0; }
+      section { padding: 1.5rem 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="#" class="logo">
+        <span>SSM</span> CEITI
+      </a>
+      <ul class="nav-links">
+        <li><a href="#cuprins">Cuprins</a></li>
+        <li><a href="#introducere">Introducere</a></li>
+        <li><a href="#instructaj">Instructaj</a></li>
+        <li><a href="#electrosecuritate">Electrosecuritate</a></li>
+        <li><a href="#comparatie">Comparație</a></li>
+        <li><a href="#concluzii">Concluzii</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="hero-content">
+      <div class="badge">
+        🛡️ Securitate și Sănătate în Muncă · P-2341
+      </div>
+      <h1>
+        Instructaj la locul de muncă<br>
+        <span class="accent">&</span> Asigurarea electrosecurității
+      </h1>
+      <p class="hero-subtitle">
+        Proiect individual SSM – Laborator Nr. 102 · Compararea încăperilor după gradul de pericol electro și anti-incendiar în incinta CEITI (inclusiv căminele)
+      </p>
+      <div class="meta-cards">
+        <div class="meta-card">
+          <div class="label">Data prezentării</div>
+          <div class="value">04.11 · V · Miercuri</div>
+        </div>
+        <div class="meta-card">
+          <div class="label">Grupă / Categorie</div>
+          <div class="value">Gr. 3 · Cat. 6,7,11,17,20</div>
+        </div>
+        <div class="meta-card">
+          <div class="label">Locul</div>
+          <div class="value">Lab. 102 · CEITI</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- CUPRINS -->
+  <section id="cuprins">
+    <div class="container">
+      <div class="section-header fade-in">
+        <div class="num">01</div>
+        <h2>Cuprins</h2>
+        <p>Structura proiectului – navigare rapidă prin secțiuni</p>
+      </div>
+      <div class="toc fade-in">
+        <h3>📋 Structura proiectului</h3>
+        <ol>
+          <li><a href="#introducere">Introducere – Scopul și importanța temelor</a></li>
+          <li><a href="#instructaj">Instructaj la locul de muncă (pentru elevi) – Laborator Nr. 102</a></li>
+          <li><a href="#continut-instructaj">Conținutul instructajului pentru lucrul cu calculatorul</a></li>
+          <li><a href="#electrosecuritate">Asigurarea electrosecurității – Principii generale</a></li>
+          <li><a href="#comparatie">Compararea încăperilor după gradul de pericol (electro + anti-incendiar)</a></li>
+          <li><a href="#ceiti">Aplicare practică în incinta CEITI (inclusiv căminele)</a></li>
+          <li><a href="#concluzii">Concluzii și recomandări</a></li>
+          <li><a href="#bibliografie">Bibliografie / Surse</a></li>
+          <li><a href="#autori">Autori</a></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTRODUCERE -->
+  <section id="introducere" style="background: white;">
+    <div class="container">
+      <div class="section-header fade-in">
+        <div class="num">02</div>
+        <h2>Introducere</h2>
+        <p>De ce sunt esențiale aceste teme pentru elevii și personalul CEITI</p>
+      </div>
+
+      <div class="card fade-in">
+        <h3><span class="icon">🎯</span> Scopul proiectului</h3>
+        <p>
+          Prezentul proiect are ca obiectiv principal formarea competențelor practice și teoretice în domeniul <strong>Securității și Sănătății în Muncă (SSM)</strong>, cu focus pe:
+        </p>
+        <ul>
+          <li><strong>Instructajul la locul de muncă</strong> – specific pentru elevi, în Laboratorul Nr. 102, pentru lucrul cu calculatorul;</li>
+          <li><strong>Asigurarea electrosecurității</strong> și <strong>clasificarea încăperilor</strong> după gradul de pericol (fără pericol major / cu pericol majorat / foarte periculoase) din punct de vedere electro și anti-incendiar, aplicat în incinta CEITI (săli de clasă, laboratoare, cămine).</li>
+        </ul>
+        <div class="highlight-box">
+          <strong>Importanță:</strong> Elevii care lucrează zilnic cu echipamente electrice (calculatoare, monitoare, rețele) trebuie să cunoască riscurile reale și măsurile concrete de prevenire. Instructajul corect + cunoașterea clasificării încăperilor reduc semnificativ riscul de electrocutare și incendiu.
+        </div>
+      </div>
+
+      <div class="grid-2 fade-in">
+        <div class="card">
+          <h3><span class="icon">📜</span> Baza legală</h3>
+          <ul>
+            <li>Legea nr. 186 din 10.07.2008 privind securitatea și sănătatea în muncă</li>
+            <li>Hotărâri de Guvern și norme metodologice de aplicare</li>
+            <li>Instrucțiuni proprii de SSM elaborate la nivelul unității de învățământ</li>
+            <li>Norme generale de apărare împotriva incendiilor</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3><span class="icon">🎓</span> Beneficii pentru elevi</h3>
+          <ul>
+            <li>Cunoașterea riscurilor specifice laboratorului de informatică</li>
+            <li>Formarea obiceiului de a respecta regulile de electrosecuritate</li>
+            <li>Capacitatea de a identifica încăperi cu risc crescut</li>
+            <li>Pregătire pentru situații de urgență (evacuare, prim ajutor)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INSTRUCTAJ -->
+  <section id="instructaj">
+    <div class="container">
+      <div class="section-header fade-in">
+        <div class="num">03</div>
+        <h2>Instructaj la locul de muncă</h2>
+        <p>Pentru elevi · Laborator Nr. 102 · Lucrul cu calculatorul · Profesor responsabil</p>
+      </div>
+
+      <div class="card fade-in">
+        <h3><span class="icon">📌</span> Ce este instructajul la locul de muncă?</h3>
+        <p>
+          Conform legislației Republicii Moldova (Legea nr. 186/2008 și normele metodologice), <strong>instruirea la locul de muncă</strong> se efectuează <em>după</em> instruirea introductiv-generală și are ca scop prezentarea riscurilor concrete pentru securitate și sănătate, precum și măsurile de prevenire și protecție la nivelul fiecărui loc de muncă / post de lucru.
+        </p>
+        <div class="highlight-box success">
+          <strong>Particularitate pentru elevi:</strong> În instituțiile de învățământ, instructajul se adaptează la specificul activităților practice (laboratoare de informatică, ateliere etc.) și este realizat de profesorul responsabil de laborator, în grupe de maxim 20 de persoane.
+        </div>
+      </div>
+
+      <div class="grid-3 fade-in">
+        <div class="feature-card">
+          <div class="icon-lg">⏱️</div>
+          <h4>Durata minimă</h4>
+          <p>Nu mai mică de <strong>8 ore</strong>. Se stabilește prin instrucțiuni proprii, în funcție de riscurile locului de muncă.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon-lg">👨‍🏫</div>
+          <h4>Cine o face?</h4>
+          <p>Conducătorul direct al locului de muncă (profesorul responsabil de Lab. 102), în grupe ≤ 20 persoane.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon-lg">📝</div>
+          <h4>Documentare</h4>
+          <p>Se consemnează în <strong>Fișa de instruire individuală</strong>. Admiterea la lucru se face doar după verificare.</p>
+        </div>
+      </div>
+
+      <div class="card fade-in" style="margin-top: 1.5rem;">
+        <h3><span class="icon">✅</span> Când se efectuează?</h3>
+        <ul>
+          <li>La angajare / debutul activității practice în laborator</li>
+          <li>La schimbarea locului de muncă sau a postului de lucru</li>
+          <li>La introducerea de echipamente noi sau tehnologii noi</li>
+          <li>După un accident de muncă sau o situație periculoasă</li>
+          <li>Periodic, conform programului stabilit de unitate</li>
+          <li>La reluarea activității după o întrerupere mai lungă</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTINUT INSTRUCTAJ -->
+  <section id="continut-instructaj" style="background: white;">
+    <div class="container">
+      <div class="section-header fade-in">
+        <div class="num">04</div>
+        <h2>Conținutul instructajului – Lab. 102</h2>
+        <p>Ce trebuie să cunoască elevul înainte de a lucra cu calculatorul</p>
+      </div>
+
+      <div class="steps fade-in">
+        <div class="step" data-num="1">
+          <h4>Riscuri de accidentare și îmbolnăvire profesională</h4>
+          <p>Specifice lucrului cu calculatorul: electrocutare, oboseală oculară, poziții vicioase, radiații electromagnetice de intensitate redusă, risc de incendiu de la scurtcircuite.</p>
+        </div>
+        <div class="step" data-num="2">
+          <h4>Prevederile instrucțiunilor proprii de SSM</h4>
+          <p>Reguli clare pentru pornirea/oprirea echipamentelor, interdicții (nu se demontează, nu se folosesc prelungitoare defecte, nu se mănâncă/bea pe masa de lucru), ordine și curățenie.</p>
+        </div>
+        <div class="step" data-num="3">
+          <h4>Măsuri de prim ajutor, stingere incendii și evacuare</h4>
+          <p>Localizarea stingătoarelor, trusei de prim ajutor, căilor de evacuare din Lab. 102 și din clădire. Procedura de anunțare a situațiilor de urgență.</p>
+        </div>
+        <div class="step" data-num="4">
+          <h4>Demonstrații practice</h4>
+          <p>Utilizarea corectă a echipamentului (monitor, unitate, tastatură, mouse), verificare vizuală a cablurilor, poziție ergonomică corectă, utilizarea mijloacelor de protecție dacă este cazul.</p>
+        </div>
+        <div class="step" data-num="5">
+          <h4>Verificarea cunoștințelor și admiterea la lucru</h4>
+          <p>Șeful ierarhic superior (sau profesorul) verifică însușirea cunoștințelor. Doar după consemnarea în fișă elevul poate lucra independent.</p>
+        </div>
+      </div>
+
+      <div class="highlight-box warning fade-in">
+        <strong>⚠️ Atenție:</strong> Începerea efectivă a activității la postul de lucru se face <strong>numai după verificarea cunoștințelor</strong> și consemnarea în Fișa de instruire individuală. Fără acest pas, elevul nu are voie să lucreze independent.
+      </div>
+    </div>
+  </section>
+
+  <!-- ELECTROSECURITATE -->
+  <section id="electrosecuritate">
+    <div class="container">
+      <div class="section-header fade-in">
+        <div class="num">05</div>
+        <h2>Asigurarea electrosecurității</h2>
+        <p>Principii, riscuri și măsuri de protecție la lucrul cu instalații și echipamente electrice</p>
+      </div>
+
+      <div class="card fade-in">
+        <h3><span class="icon">⚡</span> Ce înseamnă electrosecuritate?</h3>
+        <p>
+          Electrosecuritatea reprezintă ansamblul măsurilor tehnice și organizatorice menite să protejeze persoanele împotriva riscului de electrocutare și a altor efecte periculoase ale curentului electric (arsuri, incendii de origine electrică).
+        </p>
+        <p>
+          În laboratoarele de informatică și în cămine, principalele surse de risc sunt: cabluri deteriorate, prize defecte, supraîncărcarea circuitelor, utilizarea de prelungitoare necorespunzătoare, umezeala în apropierea echipamentelor.
+        </p>
+      </div>
+
+      <div class="grid-2 fade-in">
+        <div class="card">
+          <h3><span class="icon">🔴</span> Efecte ale curentului electric</h3>
+          <ul>
+            <li><strong>Electrocutare</strong> – trecerea curentului prin corp</li>
+            <li>Arsuri termice și electrice</li>
+            <li>Contracții musculare (imposibilitatea de a elibera conductorul)</li>
+            <li>Fibrilație ventriculară (la curenți > ~50 mA)</li>
+            <li>Incendiu de origine electrică</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3><span class="icon">🟢</span> Măsuri principale de protecție</h3>
+          <ul>
+            <li>Izolație dublă / întărită a echipamentelor</li>
+            <li>Legare la pământ (prize cu împământare)</li>
+            <li>Disjunctoare diferențiale (RCD / FI)</li>
+            <li>Verificarea periodică a instalațiilor</li>
+            <li>Interzicerea intervențiilor neautorizate</li>
+            <li>Menținerea uscăciunii în zona echipamentelor</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card fade-in">
+        <h3><span class="icon">💡</span> Reguli practice pentru elevi în Lab. 102</h3>
+        <ul>
+          <li>Nu atingeți prizele, cablurile sau spatele unității cu mâinile umede.</li>
+          <li>Nu demontați și nu reparați echipamentele – anunțați profesorul.</li>
+          <li>Nu folosiți prelungitoare improvizate sau cu izolație deteriorată.</li>
+          <li>Opriți echipamentul de la butonul de alimentare înainte de a deconecta cablul.</li>
+          <li>În caz de miros de ars, scântei sau zgomote anormale – deconectați imediat și anunțați.</li>
+          <li>Nu aglomerați prizele (nu conectați prea multe aparate pe același circuit).</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPARATIE -->
+  <section id="comparatie" style="background: white;">
+    <div class="container">
+      <div class="section-header fade-in">
+        <div class="num">06</div>
+        <h2>Compararea încăperilor după gradul de pericol</h2>
+        <p>Clasificare din punct de vedere al pericolului de electrocutare și anti-incendiar</p>
+      </div>
+
+      <div class="card fade-in">
+        <h3><span class="icon">📊</span> Criterii de clasificare</h3>
+        <p>
+          Încăperile se clasifică în funcție de condițiile de mediu (umiditate, prezența prafului conductiv, temperatură, substanțe agresive) și de natura activităților desfășurate. Această clasificare determină măsurile de protecție electrice și anti-incendiare obligatorii.
+        </p>
+      </div>
+
+      <div class="table-wrapper fade-in">
+        <table>
+          <thead>
+            <tr>
+              <th>Categorie</th>
+              <th>Caracteristici</th>
+              <th>Exemple în CEITI</th>
+              <th>Măsuri tipice</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="tag tag-green">Fără pericol major</span></td>
+              <td>
+                Umiditate relativă &lt; 60–75%<br>
+                Fără praf conductiv<br>
+                Temperatură normală<br>
+                Pardoseală izolantă
+              </td>
+              <td>
+                Săli de clasă obișnuite<br>
+                Birouri administrative<br>
+                Biblioteca / sala de lectură
+              </td>
+              <td>
+                Prize cu împământare<br>
+                Izolație standard<br>
+                Stingătoare tip ABC
+              </td>
+            </tr>
+            <tr>
+              <td><span class="tag tag-orange">Cu pericol majorat</span></td>
+              <td>
+                Umiditate ridicată (75–100%)<br>
+                Temperaturi ridicate<br>
+                Praf conductiv (cenușă, metal)<br>
+                Pardoseală conductoare
+              </td>
+              <td>
+                Unele laboratoare tehnice<br>
+                Ateliere cu umezeală<br>
+                Spălătorii / bucătării (cămine)
+              </td>
+              <td>
+                Disjunctoare diferențiale<br>
+                Echipamente cu izolație întărită<br>
+                Ventilație forțată<br>
+                Verificări periodice mai frecvente
+              </td>
+            </tr>
+            <tr>
+              <td><span class="tag tag-red">Foarte periculoase</span></td>
+              <td>
+                Mediu deosebit de umed<br>
+                Substanțe chimice agresive<br>
+                Temperatura &gt; 35°C sau &lt; 0°C<br>
+                Combinații de factori de risc
+              </td>
+              <td>
+                Posibile zone tehnice (cazangerie, depozite speciale)<br>
+                Spații cu acumulări de vapori inflamabili
+              </td>
+              <td>
+                Protecții speciale (tensiune redusă, separare galvanică)<br>
+                Acces restricționat<br>
+                Mijloace de stingere specializate<br>
+                Instruire suplimentară
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="highlight-box fade-in">
+        <strong>Notă importantă:</strong> Clasificarea se face pe baza normelor tehnice de electrosecuritate și a normelor de apărare împotriva incendiilor. Laboratoarele de informatică (Lab. 102) se încadrează, de regulă, în categoria <strong>fără pericol major</strong>, dar trebuie respectate strict regulile de utilizare a echipamentelor electrice pentru a nu crea riscuri suplimentare.
+      </div>
+    </div>
+  </section>
+
+  <!-- CEITI -->
+  <section id="ceiti">
+    <div class="container">
+      <div class="section-header fade-in">
+        <div class="num">07</div>
+        <h2>Aplicare în incinta CEITI</h2>
+        <p>Laboratoare, săli de clasă și cămine – puncte de atenție</p>
+      </div>
+
+      <div class="grid-2 fade-in">
+        <div class="card">
+          <h3><span class="icon">💻</span> Laborator Nr. 102</h3>
+          <p><strong>Categorie estimată:</strong> <span class="tag tag-green">Fără pericol major</span></p>
+          <ul>
+            <li>Mediu uscat, temperatură controlată</li>
+            <li>Echipamente de calcul cu izolație dublă</li>
+            <li>Riscuri principale: scurtcircuit, supraîncălzire cabluri, oboseală ergonomică</li>
+            <li>Măsuri: instructaj specific, verificare vizuală cabluri, ordine pe posturi</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3><span class="icon">🏠</span> Căminele CEITI</h3>
+          <p><strong>Zone mixte</strong> – camere (fără pericol major) + băi / bucătării (pericol majorat)</p>
+          <ul>
+            <li>Atenție maximă la uscătoare, fierbătoare, prize din băi</li>
+            <li>Interzis: prelungitoare în zone umede, supraîncărcare</li>
+            <li>Stingătoare și planuri de evacuare trebuie cunoscute</li>
+            <li>Persoane responsabile: administrator + elevi de serviciu</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card fade-in">
+        <h3><span class="icon">🔥</span> Aspecte anti-incendiare comune</h3>
+        <p>
+          Indiferent de categoria încăperii, în CEITI trebuie respectate:
+        </p>
+        <ul>
+          <li>Căile de evacuare libere (nu se blochează cu mobilier sau materiale)</li>
+          <li>Stingătoarele trebuie să fie vizibile, verificate și accesibile</li>
+          <li>Interzis fumatul în zonele cu risc și depozitarea materialelor inflamabile lângă surse de căldură</li>
+          <li>Cunoașterea planului de evacuare pe clădire (Bloc A, B, cămine)</li>
+          <li>Anunțarea imediată a oricărei situații suspecte (miros de ars, scântei, fum)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONCLUZII -->
+  <section id="concluzii" style="background: white;">
+    <div class="container">
+      <div class="section-header fade-in">
+        <div class="num">08</div>
+        <h2>Concluzii și recomandări</h2>
+        <p>Ce reținem și cum aplicăm în practică</p>
+      </div>
+
+      <div class="card fade-in">
+        <h3><span class="icon">📌</span> Concluzii principale</h3>
+        <ol>
+          <li>
+            <strong>Instructajul la locul de muncă</strong> nu este o formalitate – este etapa obligatorie care face legătura între teoria generală și riscurile concrete din Lab. 102. Fără verificare și consemnare în fișă, elevul nu poate lucra independent.
+          </li>
+          <li>
+            <strong>Electrosecuritatea</strong> începe cu respectarea regulilor simple: cabluri intacte, prize corecte, mâini uscate, fără intervenții neautorizate. Majoritatea accidentelor se produc din nerespectarea acestor reguli de bază.
+          </li>
+          <li>
+            <strong>Clasificarea încăperilor</strong> ajută la înțelegerea nivelului de risc și la aplicarea măsurilor proporționale. Laboratoarele de informatică sunt, în general, fără pericol major, dar zonele umede din cămine pot avea pericol majorat.
+          </li>
+          <li>
+            <strong>Responsabilitatea</strong> este comună: profesorul realizează instructajul, elevul îl respectă, administrația asigură condițiile tehnice (instalații, stingătoare, planuri de evacuare).
+          </li>
+        </ol>
+      </div>
+
+      <div class="grid-2 fade-in">
+        <div class="card">
+          <h3><span class="icon">✅</span> Recomandări pentru elevi</h3>
+          <ul>
+            <li>Participați activ la instructaj și puneți întrebări</li>
+            <li>Verificați vizual cablurile și prizele înainte de a porni calculatorul</li>
+            <li>Cunoașteți poziția stingătoarelor și a ieșirilor de urgență</li>
+            <li>Anunțați imediat orice defecțiune sau situație suspectă</li>
+            <li>Respectați ordinea și curățenia pe postul de lucru</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3><span class="icon">🏫</span> Recomandări la nivel de unitate</h3>
+          <ul>
+            <li>Actualizarea periodică a instrucțiunilor proprii de SSM</li>
+            <li>Verificări periodice ale instalațiilor electrice</li>
+            <li>Exerciții de evacuare cel puțin o dată pe an</li>
+            <li>Marcarea clară a căilor de evacuare și a mijloacelor de stingere</li>
+            <li>Instruirea personalului de serviciu din cămine</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BIBLIOGRAFIE -->
+  <section id="bibliografie">
+    <div class="container">
+      <div class="section-header fade-in">
+        <div class="num">09</div>
+        <h2>Bibliografie și surse</h2>
+        <p>Documente legislative și materiale didactice utilizate</p>
+      </div>
+
+      <div class="card fade-in">
+        <ul style="list-style: none; padding-left: 0;">
+          <li style="margin-bottom: 0.75rem;">📜 <strong>Legea nr. 186 din 10.07.2008</strong> privind securitatea și sănătatea în muncă (Republica Moldova)</li>
+          <li style="margin-bottom: 0.75rem;">📜 Norme metodologice de aplicare a Legii SSM (Hotărâri de Guvern)</li>
+          <li style="margin-bottom: 0.75rem;">📄 SSM. Instructaj la locul de muncă – materiale didactice CEITI</li>
+          <li style="margin-bottom: 0.75rem;">📄 SSM. Instruirea introductiv-generală – tematică și conținut</li>
+          <li style="margin-bottom: 0.75rem;">📄 Model de Instructaj la locul de muncă (fișe și instrucțiuni)</li>
+          <li style="margin-bottom: 0.75rem;">📕 Norme generale de apărare împotriva incendiilor</li>
+          <li style="margin-bottom: 0.75rem;">📕 Cerințe pentru unitățile comerciale / spații cu risc de incendiu (materiale complementare)</li>
+          <li style="margin-bottom: 0.75rem;">📘 Materiale de curs Modulul 1 – Cadrul legislativ și instruirea în domeniul SSM</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- AUTORI -->
+  <section id="autori" style="background: white; padding-bottom: 5rem;">
+    <div class="container">
+      <div class="section-header fade-in">
+        <div class="num">10</div>
+        <h2>Autori</h2>
+        <p>Elevi · Grupa 3 · Categoriile 6, 7, 11, 17, 20 · Prezentare 04.11</p>
+      </div>
+
+      <div class="authors fade-in">
+        <div class="author">
+          <div class="author-avatar">BB</div>
+          <div class="author-name">Borș Bogdan</div>
+        </div>
+        <div class="author">
+          <div class="author-avatar">BA</div>
+          <div class="author-name">Bruma Alexandrina</div>
+        </div>
+        <div class="author">
+          <div class="author-avatar">CA</div>
+          <div class="author-name">Covali Alexandr</div>
+        </div>
+        <div class="author">
+          <div class="author-avatar">GC</div>
+          <div class="author-name">Gațcan Cristian</div>
+        </div>
+        <div class="author">
+          <div class="author-avatar">MA</div>
+          <div class="author-name">Mazur Adrian</div>
+        </div>
+      </div>
+
+      <div class="card fade-in" style="margin-top: 2.5rem; text-align: center;">
+        <p style="margin-bottom: 0.5rem; color: var(--text-muted); font-size: 0.95rem;">
+          Proiect realizat în cadrul disciplinei <strong>Securitate și Sănătate în Muncă</strong>
+        </p>
+        <p style="margin: 0; color: var(--primary); font-weight: 600;">
+          CEITI · Laborator Nr. 102 · 2025–2026
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="logo-footer">SSM · CEITI</div>
+    <p>
+      Proiect educațional privind Instructajul la locul de muncă și Asigurarea electrosecurității.
+      Materialele sunt destinate uzului didactic.
+    </p>
+    <div class="copy">
+      © 2025–2026 · Grupa 3 · P-2341 · Toate drepturile rezervate materialelor originale
+    </div>
+  </footer>
+
+  <script>
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 40);
+    });
+
+    // Fade-in on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // Smooth active link (optional enhancement)
+    const sections = document.querySelectorAll('section[id]');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        const top = section.offsetTop - 120;
+        if (window.scrollY >= top) current = section.getAttribute('id');
+      });
+      document.querySelectorAll('.nav-links a').forEach(a => {
+        a.style.color = a.getAttribute('href') === '#' + current ? 'var(--primary)' : '';
+        a.style.background = a.getAttribute('href') === '#' + current ? 'rgba(15, 76, 129, 0.08)' : '';
+      });
+    });
+  </script>
+</body>
+</html>
