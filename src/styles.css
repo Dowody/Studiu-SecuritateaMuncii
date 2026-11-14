@@ -1,41 +1,101 @@
 @import "tailwindcss";
 
+@theme {
+  --font-sans: "Space Grotesk", system-ui, sans-serif;
+
+  --color-brand: #8cb8ff;
+  --color-dark: #191a23;
+  --color-gray: #f3f3f3;
+  --color-white: #ffffff;
+  --color-muted: #4b4c55;
+
+  --color-safe: #a8e6a1;
+  --color-warn: #ffd166;
+  --color-danger: #ff7a6b;
+}
+
 @layer base {
   button:not(:disabled),
-  [role="button"]:not(:disabled) {
+  [role="button"]:not(:disabled),
+  summary {
     cursor: pointer;
   }
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
   }
   body {
     margin: 0;
-    font-family: Inter, system-ui, sans-serif;
-    background: #f4f7fb;
-    color: #1e293b;
+    font-family: var(--font-sans);
+    background: var(--color-white);
+    color: var(--color-dark);
+    -webkit-font-smoothing: antialiased;
+  }
+  summary::-webkit-details-marker {
+    display: none;
   }
 }
 
-@keyframes ken {
-  from { transform: scale(1); }
-  to { transform: scale(1.08); }
-}
-@keyframes drift {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-14px); }
-}
-@keyframes pulse-ring {
-  0% { box-shadow: 0 0 0 0 rgba(230, 57, 70, 0.45); }
-  70% { box-shadow: 0 0 0 12px rgba(230, 57, 70, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(230, 57, 70, 0); }
+@layer components {
+  /* Signature card: dark outline + hard drop shadow + big radius */
+  .pop {
+    border: 1px solid var(--color-dark);
+    border-radius: 2rem;
+    box-shadow: 0 5px 0 0 var(--color-dark);
+  }
+  @media (min-width: 768px) {
+    .pop {
+      border-radius: 2.8rem;
+    }
+  }
+  .tag {
+    display: inline;
+    border-radius: 0.45rem;
+    padding: 0 0.4rem;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+  }
 }
 
-.hero-photo {
-  animation: ken 18s ease-in-out infinite alternate;
+@media (prefers-reduced-motion: no-preference) {
+  .press {
+    transition: transform 150ms ease, box-shadow 150ms ease;
+  }
+  .press:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 7px 0 0 var(--color-dark);
+  }
 }
-.floaty {
-  animation: drift 6s ease-in-out infinite;
+
+@layer components {
+  /* Photo frame: rounded corners + thin outline, no shadow */
+  .photo {
+    overflow: hidden;
+    border: 1px solid var(--color-dark);
+    border-radius: 2rem;
+  }
+  @media (min-width: 768px) {
+    .photo {
+      border-radius: 2.8rem;
+    }
+  }
 }
-.live-dot {
-  animation: pulse-ring 2s infinite;
+
+/* Crossfade slideshow: 5s per image, 1s fade. Pure CSS so it also works on the static export.
+   Durations/delays are set inline by <Slideshow>; one keyframe set per image count. */
+@keyframes slide-fade-5 {
+  0% { opacity: 0; } 4% { opacity: 1; } 20% { opacity: 1; } 24% { opacity: 0; } 100% { opacity: 0; }
 }
+@keyframes slide-fade-6 {
+  0% { opacity: 0; } 3.334% { opacity: 1; } 16.667% { opacity: 1; } 20% { opacity: 0; } 100% { opacity: 0; }
+}
+.slideshow img {
+  opacity: 0;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .slideshow img { animation: none !important; }
+  .slideshow img:first-child { opacity: 1; }
+}
+
