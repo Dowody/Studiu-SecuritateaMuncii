@@ -86,7 +86,7 @@ function Home() {
               Instructaj la locul de muncă și electrosecuritate
             </h1>
             <p className="mt-4 max-w-2xl text-lg text-white/85">
-              Cinci colegi, două teme: cum se instruiesc elevii înainte să lucreze la calculator și cum deosebim o sală obișnuită de o încăpere cu pericol majorat — în școală și în cămine.
+              Ce învață elevul înainte să lucreze la calculator și cât de periculoasă este fiecare încăpere din colegiu și din cămin.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               {TEAM.map(([ini, name]) => (
@@ -110,15 +110,14 @@ function Home() {
         <section id="introducere" className="bg-white px-4 py-14">
           <div className="mx-auto grid max-w-6xl items-center gap-8 lg:grid-cols-2">
             <div>
-              <h2 className="font-[Space_Grotesk,sans-serif] text-3xl font-bold text-[#0a355c]">De ce acest instructaj</h2>
+              <h2 className="font-[Space_Grotesk,sans-serif] text-3xl font-bold text-[#0a355c]">Ce este instructajul la locul de muncă</h2>
               <p className="mt-3 text-slate-700">
-                Legea nr. 186 din 10 iulie 2008 spune că instruirea se face din mijloacele unității, în timpul programului, și se consideră timp de muncă. La noi, „locul de muncă” al elevului în oră este postul din laborator.
+                Este instruirea în care afli riscurile <b>postului tău</b> și cum să te ferești de ele. Pentru elev, postul este calculatorul din Laboratorul 102.
               </p>
               <ul className="mt-4 list-disc space-y-2 pl-5 text-slate-700">
-                <li>Mai întâi vine instruirea introductiv-generală: legea, riscurile unității, incendiu, prim ajutor.</li>
-                <li>Apoi instructajul la locul de muncă: riscurile exacte ale postului, nu ale întregii școli.</li>
-                <li>Fără verificare și fără fișă, elevul nu lucrează de sine stătător.</li>
-                <li>Normele de apărare împotriva incendiilor cer căi libere, mijloace de stingere și oameni care știu unde sunt.</li>
+                <li>Mai întâi se face instruirea introductiv-generală, cu regulile întregului colegiu.</li>
+                <li>Apoi urmează instructajul la locul de muncă, doar despre laboratorul tău.</li>
+                <li>Fără instructaj și fără semnătură în fișă, elevul nu lucrează singur.</li>
               </ul>
             </div>
             <figure className="overflow-hidden rounded-3xl shadow-lg">
@@ -132,9 +131,9 @@ function Home() {
           <Eyebrow n="02" title="Instructajul din laborator" />
           <div className="grid gap-4 md:grid-cols-3">
             {[
-              ["Cine îl face", "Conducătorul direct al locului de muncă: profesorul responsabil de Laboratorul 102. Grupa nu trece de 20 de persoane. Fișa rămâne la el."],
-              ["Cât ține", "Minimum 8 ore, stabilite prin instrucțiuni proprii împreună cu lucrătorul desemnat sau serviciul de prevenire. La elevi se adaptează la orele practice, dar conținutul minim rămâne."],
-              ["Când se reia", "La primul laborator, la schimbarea postului, la echipament nou, după un incident și periodic. Reluarea lucrului se consemnează din nou în fișă."],
+              ["Cine îl face", "Profesorul responsabil de Laboratorul 102, cu grupe de cel mult 20 de elevi."],
+              ["Ce cuprinde", "Riscurile postului, regulile laboratorului, primul ajutor, stingerea incendiului și evacuarea, plus o demonstrație practică."],
+              ["Când se repetă", "La primul laborator, la schimbarea postului, la echipament nou și după un incident."],
             ].map(([t, d]) => (
               <Card key={t} title={t}>{d}</Card>
             ))}
@@ -142,13 +141,13 @@ function Home() {
           <div className="mt-6 grid items-center gap-6 lg:grid-cols-2">
             <img src="/ergonomie.jpg" alt="Post de lucru cu monitor, tastatură și scaun" className="floaty w-full rounded-3xl object-cover shadow-lg" />
             <Card title="Fișa de instruire">
-              <p>Fișa personală de instruire nu e o semnătură de formă. În ea se vede:</p>
+              <p>Fișa personală de instruire dovedește că instructajul a avut loc. În ea se scrie:</p>
               <ul className="mt-2 list-disc space-y-1 pl-5">
-                <li>data instructajului și cine l-a făcut;</li>
-                <li>că elevul a fost verificat de șeful ierarhic superior celui care a instruit;</li>
-                <li>că abia după aceea i se permite lucrul de sine stătător.</li>
+                <li>data și cine a făcut instructajul;</li>
+                <li>că elevul a răspuns corect la verificare;</li>
+                <li>semnătura elevului.</li>
               </ul>
-              <p className="mt-3">Dacă lipsește una dintre ele, postul rămâne închis pentru acel elev.</p>
+              <p className="mt-3">Abia după asta elevul poate lucra singur la calculator.</p>
             </Card>
           </div>
         </section>
@@ -158,11 +157,11 @@ function Home() {
             <Eyebrow n="03" title="Cinci pași la calculator" />
             <div className="grid gap-4 lg:grid-cols-5">
               {[
-                ["1", "Riscuri", "Electrocutare de la cablu deteriorat, oboseală oculară, poziție vicioasă, scurtcircuit, incendiu de la priză supraîncărcată."],
-                ["2", "Reguli", "Pornire și oprire de la buton. Fără demontat carcasa. Fără mâncare sau lichide pe masă. Prelungitor doar dacă e întreg și aprobat."],
-                ["3", "Urgențe", "Unde e stingătorul sălii, trusa, alarma și scara. Cine anunță profesorul. Nu blocăm ușa cu ghiozdane."],
-                ["4", "Practică", "Verificăm vizual ștecherul și izolația. Așezăm monitorul la o lungime de braț. Scaunul susține spatele. Cablurile nu atârnă pe interval."],
-                ["5", "Admitere", "Profesorul pune 2–3 întrebări. Doar răspunsul corect plus semnătura în fișă deschid postul."],
+                ["1", "Riscuri", "Curentul electric, incendiul de la cabluri, oboseala ochilor și a spatelui."],
+                ["2", "Reguli", "Pornești și oprești doar de la buton. Nu deschizi carcasa. Fără apă sau mâncare pe masă."],
+                ["3", "Urgențe", "Știi unde sunt stingătorul, trusa de prim ajutor și ieșirea. Ușa nu se blochează cu ghiozdane."],
+                ["4", "Practică", "Verifici cablul și priza. Monitorul stă la o lungime de braț. Spatele sprijinit de scaun."],
+                ["5", "Verificare", "Profesorul pune câteva întrebări. Răspunzi corect, semnezi fișa și poți lucra."],
               ].map(([n, t, d]) => (
                 <article key={n} className="rounded-2xl border border-slate-200 p-4">
                   <span className="grid h-8 w-8 place-items-center rounded-full bg-[#0f4c81] text-sm font-bold text-white">{n}</span>
@@ -171,7 +170,7 @@ function Home() {
                 </article>
               ))}
             </div>
-            <Note tone="warn">Dacă apare miros de plastic ars, nu se caută defectul de unul singur. Se oprește echipamentul, se scoate din priză doar dacă este sigur și se anunță profesorul.</Note>
+            <Note tone="warn">Miros de plastic ars sau fum? Oprești calculatorul, te îndepărtezi și anunți imediat profesorul. Nu repari nimic singur.</Note>
           </div>
         </section>
 
@@ -185,23 +184,23 @@ function Home() {
             <div className="space-y-4">
               <Card title="Ce poate face curentul">
                 <ul className="list-disc space-y-1 pl-5">
-                  <li>Electrocutare — trecerea curentului prin corp.</li>
-                  <li>Arsuri la locul de contact.</li>
-                  <li>Contracție: mâna nu mai poate da drumul conductorului.</li>
-                  <li>La zeci de miliamperi apare riscul de fibrilație.</li>
-                  <li>Un scurtcircuit poate aprinde izolația înainte să sară siguranța.</li>
+                  <li>Electrocutare: curentul trece prin corp.</li>
+                  <li>Arsuri în locul unde ai atins firul.</li>
+                  <li>Mâna se strânge și nu mai poate da drumul firului.</li>
+                  <li>Chiar și un curent mic poate opri inima.</li>
+                  <li>Un scurtcircuit poate porni un incendiu.</li>
                 </ul>
               </Card>
               <Card title="Cu ce ne apărăm în laborator">
                 <ul className="list-disc space-y-1 pl-5">
-                  <li>Carcasă cu izolație dublă — nu o deschidem.</li>
-                  <li>Priză cu contact de protecție (împământare).</li>
-                  <li>Disjunctor diferențial pe circuit: taie când apare o scurgere spre pământ sau prin om.</li>
-                  <li>Mâini uscate. Nicio intervenție la tablou.</li>
-                  <li>Un aparat pe priză, nu un ciorchine de prelungitoare.</li>
+                  <li>Cabluri și carcase întregi, pe care nu le deschidem.</li>
+                  <li>Prize cu împământare.</li>
+                  <li>Disjunctor diferențial: taie curentul imediat ce acesta trece prin om.</li>
+                  <li>Mâini uscate. La tabloul electric umblă doar electricianul.</li>
+                  <li>Fără prelungitoare legate unul de altul.</li>
                 </ul>
               </Card>
-              <Note>Faptul că laboratorul este uscat nu anulează riscul. Un cablu tăiat mută pericolul pe postul acela, chiar dacă sala este fără pericol major.</Note>
+              <Note>Chiar dacă sala e sigură, un singur cablu tăiat face postul acela periculos.</Note>
               <div className="overflow-hidden rounded-3xl border border-slate-200 bg-black shadow-lg">
                 <div className="aspect-video">
                   <iframe
@@ -234,21 +233,21 @@ function Home() {
                 <tbody>
                   <tr className="border-b">
                     <td className="px-4 py-3 align-top"><Tag tone="ok">Fără pericol major</Tag></td>
-                    <td className="px-4 py-3 align-top">Umiditate normală, fără praf conductiv, podea izolantă, temperatură obișnuită.</td>
-                    <td className="px-4 py-3 align-top">Săli de clasă, birouri, Laboratorul 102, camera din cămin.</td>
-                    <td className="px-4 py-3 align-top">Priză cu împământare, stingător ABC, instructaj de post.</td>
+                    <td className="px-4 py-3 align-top">Nimic: aer uscat, podea de lemn sau linoleum, temperatură normală.</td>
+                    <td className="px-4 py-3 align-top">Săli de clasă, Laboratorul 102, camera din cămin.</td>
+                    <td className="px-4 py-3 align-top">Prize cu împământare, stingător în apropiere.</td>
                   </tr>
                   <tr className="border-b bg-slate-50">
                     <td className="px-4 py-3 align-top"><Tag tone="mid">Cu pericol majorat</Tag></td>
-                    <td className="px-4 py-3 align-top">Umezeală mare, căldură, praf conductiv sau podea care conduce. Un singur factor ajunge.</td>
-                    <td className="px-4 py-3 align-top">Baia și bucătăria căminului, unele ateliere.</td>
-                    <td className="px-4 py-3 align-top">Diferențial obligatoriu, fără prelungitoare pe jos ud, verificări mai dese.</td>
+                    <td className="px-4 py-3 align-top">Un singur factor ajunge: umezeală, căldură mare, praf sau podea de beton ori ceramică.</td>
+                    <td className="px-4 py-3 align-top">Bucătăria căminului, atelierele, subsolul.</td>
+                    <td className="px-4 py-3 align-top">Disjunctor diferențial obligatoriu, fără prelungitoare pe jos.</td>
                   </tr>
                   <tr>
                     <td className="px-4 py-3 align-top"><Tag tone="bad">Foarte periculoase</Tag></td>
-                    <td className="px-4 py-3 align-top">Umezeală extremă, substanțe agresive sau mai mulți factori deodată.</td>
-                    <td className="px-4 py-3 align-top">Zone tehnice închise: cazangerie, depozite speciale. Nu sunt sălile noastre.</td>
-                    <td className="px-4 py-3 align-top">Acces doar pentru personal, tensiune redusă, instruire separată.</td>
+                    <td className="px-4 py-3 align-top">Apă peste tot, substanțe chimice sau doi factori deodată.</td>
+                    <td className="px-4 py-3 align-top">Dușurile și spălătoria din cămin, încăperile tehnice.</td>
+                    <td className="px-4 py-3 align-top">Niciun aparat din priză lângă apă. În încăperile tehnice intră doar personalul.</td>
                   </tr>
                 </tbody>
               </table>
@@ -257,26 +256,26 @@ function Home() {
             <div className="mt-8 grid gap-4 md:grid-cols-2">
               <figure className="overflow-hidden rounded-3xl border border-slate-200">
                 <img src="/lab.jpg" alt="Sala de calculatoare" className="h-64 w-full object-cover" />
-                <figcaption className="p-4 text-sm text-slate-600">Laboratorul 102 stă la „fără pericol major”, dar fiecare post are propriul cablu. Pericolul local nu dispare odată cu categoria sălii.</figcaption>
+                <figcaption className="p-4 text-sm text-slate-600">Laboratorul 102 este „fără pericol major”, dar fiecare cablu trebuie verificat.</figcaption>
               </figure>
               <figure className="overflow-hidden rounded-3xl border border-slate-200">
                 <img src="/camin.jpg" alt="Bucătărie de cămin cu chiuvetă și aparate" className="h-64 w-full object-cover" />
-                <figcaption className="p-4 text-sm text-slate-600">În cămin camera e una, bucătăria e alta. Apa de lângă fierbător urcă încăperea la pericol majorat.</figcaption>
+                <figcaption className="p-4 text-sm text-slate-600">În cămin, camera e sigură, dar apa de lângă prize face bucătăria mai periculoasă.</figcaption>
               </figure>
             </div>
 
             <div className="mt-6 grid gap-4 md:grid-cols-3">
               <Card title="Evacuare">
                 <img src="/evacuare.jpg" alt="Hol cu indicatoare de ieșire" className="mb-3 h-36 w-full rounded-xl object-cover" />
-                Culoarul rămâne liber. Indicatoarele verzi se văd și când se taie lumina de lucru, pentru că iluminatul de evacuare e separat.
+                Culoarul rămâne liber. Urmezi indicatoarele verzi, care rămân aprinse chiar dacă se oprește lumina.
               </Card>
               <Card title="Stingere">
                 <img src="/stingator.jpg" alt="Stingător pe peretele holului" className="mb-3 h-36 w-full rounded-xl object-cover" />
-                Știm unde e stingătorul sălii și al etajului înainte de incident. Nu îl mutăm ca să „încapă un dulap”.
+                Afli din timp unde e stingătorul. Pe aparatele din priză nu se aruncă apă.
               </Card>
               <Card title="Cămin, pe scurt">
-                <img src="/ergonomie.jpg" alt="Colț de lucru" className="mb-3 h-36 w-full rounded-xl object-cover" />
-                În cameră: un aparat, cablu întreg. În baie: niciun încărcător pe marginea căzii. Administratorul și elevul de serviciu știu planul.
+                <img src="/primajutor.jpg" alt="Trusă de prim ajutor și plan de evacuare" className="mb-3 h-36 w-full rounded-xl object-cover" />
+                Nu lași aparate pornite când pleci. Fără reșouri în cameră. Niciun încărcător lângă duș sau chiuvetă.
               </Card>
             </div>
           </div>
@@ -287,19 +286,18 @@ function Home() {
           <div className="grid gap-4 md:grid-cols-2">
             <Card title="Patru idei">
               <ol className="list-decimal space-y-2 pl-5">
-                <li>Legea cere instructaj real, nu o bifă.</li>
-                <li>În Laboratorul 102 îl face profesorul responsabil, iar fișa dovedește că a avut loc.</li>
-                <li>Calculatorul este sigur doar cu cablu întreg, mână uscată și disjunctor diferențial.</li>
-                <li>Sala și căminul nu au același grad de pericol. Bucătăria și baia cer măsuri mai stricte.</li>
+                <li>Întâi instructajul, apoi calculatorul.</li>
+                <li>Instructajul îl face profesorul, iar semnătura în fișă îl dovedește.</li>
+                <li>Cablu întreg, mâini uscate și priză cu împământare.</li>
+                <li>Cu cât e mai multă apă în încăpere, cu atât e mai periculoasă.</li>
               </ol>
             </Card>
             <Card title="De reținut">
               <ul className="list-disc space-y-2 pl-5">
-                <li>Durata minimă a instructajului la locul de muncă: 8 ore.</li>
-                <li>Grupa de instruire: cel mult 20 de persoane.</li>
-                <li>Lab. 102: fără pericol major, cu risc local la fiecare post.</li>
-                <li>Cămin: cameră fără pericol major, zonă umedă cu pericol majorat.</li>
-                <li>Lucrul independent începe după verificare, nu după ce „am auzit o dată”.</li>
+                <li>Grupa de instruire: cel mult 20 de elevi.</li>
+                <li>Laboratorul 102 și camera din cămin: fără pericol major.</li>
+                <li>Bucătăria căminului: cu pericol majorat.</li>
+                <li>Dușurile și spălătoria: foarte periculoase.</li>
               </ul>
             </Card>
           </div>
@@ -307,8 +305,8 @@ function Home() {
             <Card title="Surse pe care ne sprijinim">
               <ul className="list-disc space-y-1 pl-5">
                 <li>Legea nr. 186/2008 privind securitatea și sănătatea în muncă.</li>
-                <li>Materialele de curs: instructaj la locul de muncă și instruirea introductiv-generală.</li>
-                <li>Modelul de instructaj la locul de muncă și normele generale de apărare împotriva incendiilor.</li>
+                <li>Legea nr. 267/1994 privind apărarea împotriva incendiilor.</li>
+                <li>Materialele de curs SSM despre instruire și modelul de instructaj la locul de muncă.</li>
               </ul>
             </Card>
           </div>
