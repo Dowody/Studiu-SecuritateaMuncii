@@ -400,22 +400,6 @@ function Home() {
 
           <Block label="Exemple din CEITI și cămin">
             <RoomSlider />
-
-            <div className="mt-8 grid gap-6 md:grid-cols-3">
-              {[
-                ["Evacuare", "/evacuare.jpg", "Culoarul e mereu liber. Dacă se stinge lumina, mergi după indicatoarele verzi."],
-                ["Stingere", "/stingator.jpg", "Află dinainte unde e stingătorul. Pe un aparat din priză nu se aruncă apă."],
-                ["În cămin", "/primajutor.jpg", "Oprești aparatele când pleci și nu lași încărcătorul lângă duș sau chiuvetă."],
-              ].map(([t, src, d]) => (
-                <div key={t} className="overflow-hidden rounded-[2rem] bg-gray">
-                  <img src={src} alt={t} className="aspect-[16/9] w-full object-cover" />
-                  <div className="p-6">
-                    <h5 className="text-xl font-medium">{t}</h5>
-                    <p className="mt-2 text-base leading-relaxed">{d}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
           </Block>
         </Section>
 
